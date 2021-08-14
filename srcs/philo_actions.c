@@ -6,23 +6,26 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 16:11:14 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/14 16:11:14 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/14 22:41:31 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <loop_data.h>
 #include "philos_loops.h"
 
-void philo_die()
+void start_philos()
 {
+    t_loop_data *data;
+    int i;
 
-}
-
-void philo_pick_fork()
-{
-
-}
-
-int philo_is_alive()
-{
-
+    i = 0;
+    data = get_settings();
+    data->start_flag = 0;
+    while (i < data->settings.philos_count)
+    {
+        pthread_create(&data->philos->thread, NULL, &philo_thread, (void*) (data->philos + i));
+        i++;
+    }
+    set_begin_ms_in_settings();
+    data->start_flag = 1;
 }
