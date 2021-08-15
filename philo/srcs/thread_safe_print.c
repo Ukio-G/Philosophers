@@ -19,6 +19,7 @@ void	thread_safe_fork_pick(t_philo *philo, t_fork fork)
 {
 	t_loop_data	*data;
 
+	(void)fork;
 	data = get_settings();
 	pthread_mutex_lock(&data->io_mutex);
 	printf("%lld %i has taken fork\n", get_ms_from_begin(), philo->idx + 1);
