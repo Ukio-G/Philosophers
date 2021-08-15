@@ -84,7 +84,7 @@ void	alloc_philoforks(int philo_count)
 	data->philos = malloc(philo_count * sizeof(t_philo));
 	data->forks_mtx = malloc(philo_count * sizeof(pthread_mutex_t));
 	data->forks = malloc(philo_count * sizeof(t_fork_status));
-	memset(data->forks, 0, philo_count);
+	memset(data->forks, 0, philo_count * sizeof(t_fork_status));
 	while (i < philo_count)
 	{
 		pthread_mutex_init(data->forks_mtx + i, 0);

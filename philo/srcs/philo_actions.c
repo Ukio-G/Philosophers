@@ -26,6 +26,7 @@ void	pick_fork_idx(t_philo *philo, int fork_idx)
 	}
 	pthread_mutex_lock(data->forks_mtx + fork_idx);
 	data->forks[fork_idx] = TAKEN;
+	pthread_mutex_unlock(data->forks_mtx + fork_idx);
 }
 
 void	free_fork_idx(int fork_idx)
@@ -33,6 +34,7 @@ void	free_fork_idx(int fork_idx)
 	t_loop_data	*data;
 
 	data = get_settings();
+	pthread_mutex_lock(data->forks_mtx + fork_idx);
 	data->forks[fork_idx] = FREE;
 	pthread_mutex_unlock(data->forks_mtx + fork_idx);
 }
