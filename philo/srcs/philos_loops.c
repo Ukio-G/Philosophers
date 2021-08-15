@@ -6,7 +6,7 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 18:00:01 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/15 18:00:01 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 19:01:20 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	eating(t_philo *philo)
 	if (philo->idx % 2 != 0)
 		pick_left_fork(philo);
 	eat_time = get_current_ms() + philo->stats.time_to_eat;
-	philo->eaten_times++;
+	philo_fed(philo);
 	thread_safe_eating(philo);
 	philo->last_eat_time = get_current_ms();
 	while (get_current_ms() < eat_time)
@@ -76,10 +76,12 @@ void	thinking(t_philo *philo)
 	thread_safe_thinking(philo);
 }
 
-void	*philo_thread(t_philo *philo)
+void	*philo_thread(void *arg)
 {
 	t_loop_data	*data;
+	t_philo		*philo;
 
+	philo = (t_philo *)arg;
 	data = get_settings();
 	while (data->start_flag == 0)
 		usleep(5);

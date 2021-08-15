@@ -6,7 +6,7 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 16:02:45 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/15 18:04:24 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 18:23:20 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ typedef struct s_loop_data
 	t_start_settings	settings;
 	pthread_mutex_t		io_mutex;
 	pthread_mutex_t		app_mutex;
+	pthread_mutex_t		fed_mutex;
 	int					start_flag;
 	int					app_active;
 	long long			begin;
-	int					last_msg_printed;
+	int					well_fed_philo;
 }	t_loop_data;
 
 void		alloc_philoforks(int philo_count);

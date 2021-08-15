@@ -6,7 +6,7 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 12:33:39 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/15 17:42:16 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 17:42:28 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	if (get_settings()->settings.eat_limit == 0)
 		return (0);
 	start_philos();
-	while (get_settings()->app_active)
+	while (get_settings()->app_active && !is_all_fed())
 		usleep(5);
 	free_resourses();
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 16:32:40 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/15 17:44:23 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 17:44:43 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	init_settings(int argc, char **argv)
 	else
 		get_settings()->settings.eat_limit = -1;
 	get_settings()->app_active = 1;
-	get_settings()->last_msg_printed = 0;
 	pthread_mutex_init(&get_settings()->io_mutex, NULL);
 	pthread_mutex_init(&get_settings()->app_mutex, NULL);
+	pthread_mutex_init(&get_settings()->fed_mutex, NULL);
 	alloc_philoforks(philo_count);
 	return (0);
 }

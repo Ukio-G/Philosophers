@@ -6,7 +6,7 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:59:43 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/15 18:14:47 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 18:15:10 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void		put_left_fork(t_philo *philo);
 void		free_fork_idx(int fork_idx);
 void		pick_fork_idx(t_philo *philo, int fork_idx);
 int			is_alive(t_philo *philo);
-
+int			is_all_fed(void);
+void		philo_fed(t_philo *philo);
 #endif
