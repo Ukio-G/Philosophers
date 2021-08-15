@@ -1,6 +1,7 @@
-#include <loop_data.h>
+#include "loop_data.h"
 #include "philos_loops.h"
 #include "philo.h"
+#include "utils.h"
 
 int is_alive(t_philo * philo)
 {
@@ -77,17 +78,14 @@ void eating(t_philo *philo)
         pick_right_fork(philo);
         pick_left_fork(philo);
     }
-
     eat_time = get_current_ms() + philo->stats.time_to_eat;
     thread_safe_eating(philo);
-
     while (get_current_ms() < eat_time)
     {
-        is_alive(philo);
+//        is_alive(philo);
         usleep(10);
     }
     philo->last_eat_time = get_current_ms();
-
     if (philo->idx % 2 == 0)
     {
         put_left_fork(philo);
@@ -136,4 +134,5 @@ void *philo_thread(t_philo *philo)
         if (philo->is_alive)
             thinking(philo);
     }
+    return (0);
 }

@@ -6,14 +6,13 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 16:02:45 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/14 23:55:34 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 00:21:04 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LOOP_DATA_H
 # define LOOP_DATA_H
 
-# include "ft_vector.h"
 # include "start_settings.h"
 # include "philo.h"
 
