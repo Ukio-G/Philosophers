@@ -79,14 +79,14 @@ void eating(t_philo *philo)
         pick_left_fork(philo);
     }
     eat_time = get_current_ms() + philo->stats.time_to_eat;
+    philo->eaten_times++;
     thread_safe_eating(philo);
+    philo->last_eat_time = get_current_ms();
     while (get_current_ms() < eat_time)
     {
-//        is_alive(philo);
         usleep(10);
     }
-    philo->last_eat_time = get_current_ms();
-    if (philo->idx % 2 == 0)
+    if (philo->idx % 2 != 0)
     {
         put_left_fork(philo);
         put_right_fork(philo);
@@ -124,14 +124,17 @@ void *philo_thread(t_philo *philo)
     data = get_settings();
     while (data->start_flag == 0)
         usleep(5);
+
     philo->last_eat_time = get_current_ms();
+    if ((philo->idx % 2))
+        usleep(500);
     while (philo->is_alive && data->app_active)
     {
-        if (philo->is_alive)
+        if (is_alive(philo) && data->app_active)
             eating(philo);
-        if (philo->is_alive)
+        if (is_alive(philo) && data->app_active)
             sleeping(philo);
-        if (philo->is_alive)
+        if (is_alive(philo) && data->app_active)
             thinking(philo);
     }
     return (0);

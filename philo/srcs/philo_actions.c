@@ -6,12 +6,13 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 16:11:14 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/14 22:41:31 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 11:45:02 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <loop_data.h>
+#include "loop_data.h"
 #include "philos_loops.h"
+#include "utils.h"
 
 void start_philos()
 {

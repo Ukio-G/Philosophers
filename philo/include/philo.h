@@ -33,6 +33,7 @@ typedef struct s_philo
     int picked_forks[2];
     long long last_eat_time;
     int is_alive;
+    int eaten_times;
 } t_philo;
 
 

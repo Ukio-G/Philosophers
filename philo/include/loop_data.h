@@ -38,5 +38,5 @@ typedef struct s_loop_data
 
 void alloc_philoforks(int philo_count);
 t_loop_data* get_settings();
-void init_settings(int argc, char **argv);
+int init_settings(int argc, char **argv);
 #endif

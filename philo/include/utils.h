@@ -6,7 +6,7 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 14:59:43 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/14 23:59:04 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 11:45:28 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@
 #include "loop_data.h"
 #include "philo.h"
 
-void	ft_bzero(void *s, size_t n);
-char	*ft_itoa(int n);
-size_t	ft_strlen(const char *str);
-char	*ft_strdup(const char *str);
-int     ft_strlcpy(char *dst, const char *src, size_t size);
-void	*ft_memcpy(void *dst, const void *src, int n);
-void	*ft_memmove(void *dst, const void *source, size_t n);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
 int	    ft_atoi(const char *str);
 
 char	ft_ternary_char(int predict, char true_v, char false_v);
@@ -49,4 +38,5 @@ void set_begin_ms_in_settings();
 long long get_current_ms();
 long long get_ms_from_begin();
 
+void free_resourses();
 #endif

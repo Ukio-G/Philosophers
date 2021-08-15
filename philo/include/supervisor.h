@@ -1,4 +1,0 @@
-#ifndef PHILO_SUPERVISOR_H
-#define PHILO_SUPERVISOR_H
-
-#endif

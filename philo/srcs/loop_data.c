@@ -6,16 +6,16 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 16:32:40 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/14 23:55:34 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 12:38:18 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "loop_data.h"
-#include "utils.h"
 #include <stdio.h>
-#include <philo.h>
 #include <pthread.h>
 #include <string.h>
+#include "loop_data.h"
+#include "utils.h"
+#include "philo.h"
 
 t_loop_data* get_settings()
 {
@@ -26,13 +26,14 @@ t_loop_data* get_settings()
     return (data);
 }
 
-void init_settings(int argc, char **argv)
+int init_settings(int argc, char **argv)
 {
     int philo_count;
 
-    if (argc > 5 || argc < 4)
+    if (argc > 6 || argc < 5)
     {
-        printf("Wrong argument count!");
+        printf("Wrong argument count!\n");
+        return 1;
     }
     philo_count = ft_atoi(argv[1]);
     get_settings()->settings.philos_count = philo_count;
@@ -48,6 +49,7 @@ void init_settings(int argc, char **argv)
     pthread_mutex_init(&get_settings()->io_mutex, NULL);
     pthread_mutex_init(&get_settings()->app_mutex, NULL);
     alloc_philoforks(philo_count);
+    return 0;
 }
 
 void init_philo(t_philo *philo)
@@ -58,6 +60,7 @@ void init_philo(t_philo *philo)
     data = get_settings();
     philo->stats = get_settings()->settings.stats;
     philo->is_alive = 1;
+    philo->eaten_times = 0;
     last_fork_idx = (int)(data->settings.philos_count) - 1;
     if (philo->idx == 0) {
         philo->forks_idx[FORK_LEFT] = last_fork_idx;
@@ -89,4 +92,23 @@ void alloc_philoforks(int philo_count)
         init_philo(data->philos + i);
         i++;
     }
+}
+
+void free_resourses()
+{
+    t_loop_data *data;
+    int fork_cnt;
+    int i;
+
+    i = 0;
+    data = get_settings();
+    fork_cnt = data->settings.philos_count;
+    while (i < fork_cnt)
+    {
+        pthread_mutex_destroy(data->forks_mtx + i);
+        i++;
+    }
+    free(data->forks_mtx);
+    free(data->forks);
+    free(data->philos);
 }
