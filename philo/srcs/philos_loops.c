@@ -6,7 +6,7 @@
 /*   By: atawana <atawana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 18:00:01 by atawana           #+#    #+#             */
-/*   Updated: 2021/08/15 19:01:20 by atawana          ###   ########.fr       */
+/*   Updated: 2021/08/15 19:21:06 by atawana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_alive(t_philo *philo)
 	long long	die_time;
 
 	die_time = philo->last_eat_time + philo->stats.time_to_die;
-	if (get_current_ms() >= die_time)
+	if (get_current_ms() > die_time)
 	{
 		philo->is_alive = 0;
 		get_settings()->app_active = 0;
@@ -35,27 +35,24 @@ void	eating(t_philo *philo)
 	long long	eat_time;
 
 	if (philo->idx % 2 == 0)
+	{
 		pick_left_fork(philo);
-	if (philo->idx % 2 == 0)
 		pick_right_fork(philo);
-	if (philo->idx % 2 != 0)
+	}
+	else
+	{
 		pick_right_fork(philo);
-	if (philo->idx % 2 != 0)
 		pick_left_fork(philo);
+	}
 	eat_time = get_current_ms() + philo->stats.time_to_eat;
 	philo_fed(philo);
 	thread_safe_eating(philo);
 	philo->last_eat_time = get_current_ms();
 	while (get_current_ms() < eat_time)
 		usleep(10);
-	if (philo->idx % 2 != 0)
-		put_left_fork(philo);
-	if (philo->idx % 2 != 0)
-		put_right_fork(philo);
-	if (philo->idx % 2 == 0)
-		put_right_fork(philo);
-	if (philo->idx % 2 == 0)
-		put_left_fork(philo);
+	put_left_fork(philo);
+	usleep(10);
+	put_right_fork(philo);
 }
 
 void	sleeping(t_philo *philo)
@@ -86,8 +83,8 @@ void	*philo_thread(void *arg)
 	while (data->start_flag == 0)
 		usleep(5);
 	philo->last_eat_time = get_current_ms();
-	if ((philo->idx % 2))
-		usleep(500);
+	if (!(philo->idx % 2))
+		usleep(50);
 	while (philo->is_alive && data->app_active)
 	{
 		if (is_alive(philo) && data->app_active)
